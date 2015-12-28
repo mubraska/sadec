@@ -2,7 +2,8 @@
     "name": "Sadec",
     "version": "1.0.0",
     "dependencies": {
-        "twitter" : "latest"
+        "twitter" : "latest",
+        "ping": "latest"
     },
     "engines": {
         "node": "4.2.1"
