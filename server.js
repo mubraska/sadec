@@ -31,7 +31,7 @@ function pingMySite() {
   var hosts = ['https://stormy-scrubland-6525.herokuapp.com/'];
   hosts.forEach(function(host){
       ping.sys.probe(host, function(isAlive){
-          console.log "Hello from the otherside"
+          console.log("Hello from the otherside");
       });
   });
 }
