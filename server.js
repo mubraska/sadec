@@ -1,6 +1,5 @@
 var Twitter = require('twitter');
 var sadecScripts = require('./sadec_scripts.json');
-var ping = require('ping');
 
 // Load the http module to create an http server.
 var http = require('http');
@@ -15,7 +14,7 @@ var server = http.createServer(function (request, response) {
 server.listen(process.env.PORT || 8000);
 
 // Put a friendly message on the terminal
-console.log("Server running at http://127.0.0.1:8000/");
+console.log("Server running at http://127.0.0.1:80/");
 
 var client = new Twitter({
   consumer_key: 'yQLXZwiw7PbyNSGngurCm0qEl',
@@ -25,20 +24,12 @@ var client = new Twitter({
 });
 
 setInterval(postSadecQuote, 3600000);
-setInterval(pingMySite, 5000)
+setInterval(pingMySite, 5000);
 
 function pingMySite() {
-  var hosts = ['https://stormy-scrubland-6525.herokuapp.com/'];
-  hosts.forEach(function(host){
-      ping.sys.probe(host, function(isAlive){
-        if (isAlive) {
-          console.log("success");
-        }
-        else {
-          console.log("error");
-        }
-      });
-  });
+  setInterval(function() {
+      http.get("http://stormy-scrubland-6525.herokuapp.com");
+  }, 5000);
 }
 
 function postSadecQuote() {
