@@ -24,7 +24,7 @@ var client = new Twitter({
 });
 
 setInterval(postSadecQuote, 3600000);
-setInterval(pingMySite, 60000);
+pingMySite();
 
 function pingMySite() {
   setInterval(function() {
