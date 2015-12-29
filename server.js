@@ -29,7 +29,7 @@ pingMySite();
 function pingMySite() {
   setInterval(function() {
       http.get("http://stormy-scrubland-6525.herokuapp.com");
-  }, 5000);
+  }, 60000);
 }
 
 function postSadecQuote() {
