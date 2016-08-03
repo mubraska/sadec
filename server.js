@@ -1,5 +1,6 @@
 var Twitter = require('twitter');
 var sadecScripts = require('./sadec_scripts.json');
+var CronJob = require('cron').CronJob;
 
 // Load the http module to create an http server.
 var http = require('http');
@@ -23,26 +24,33 @@ var client = new Twitter({
   access_token_secret: 'ImDWPfGIUxaO7YKriJj3vnLPmiLCUVR6AxpUOJP2F2PVH',
 });
 
-setInterval(postSadecQuote, 3600000);
-pingMySite();
-
-function pingMySite() {
-  setInterval(function() {
-      http.get("http://stormy-scrubland-6525.herokuapp.com");
-  }, 10000);
-}
+// setInterval(postSadecQuote, 3600000);
+// pingMySite();
+//
+// function pingMySite() {
+//   setInterval(function() {
+//       http.get("http://stormy-scrubland-6525.herokuapp.com");
+//   }, 10000);
+// }
 
 function postSadecQuote() {
     try {
         var x = Math.floor(Math.random() * 8);
-	q = sadecScripts[x];
-	console.log(q);
+	      q = sadecScripts[x];
+	      console.log(q);
         client.post('statuses/update', {status: q},  function(error, tweet, response){
-            if(error) throw error;
+          console.log(error);
+          console.log(tweet);
+          // if(error) throw error;
         });
     }
     catch(ex) {
         console.log(ex);
     }
-} 
+}
 
+var job = new CronJob('0 */1 * * *', function() {
+    postSadecQuote();
+  }, null,
+    true
+);
