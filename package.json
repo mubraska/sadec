@@ -2,6 +2,14 @@
     "name": "Sadec",
     "version": "1.0.0",
     "dependencies": {
-        "twitter" : "latest"
+        "twitter" : "latest",
+        "cron" : "latest"
+    },
+    "engines": {
+        "node": "4.2.1"
+    },
+    "scripts": {
+        "start": "npm install && node server.js"
     }
+
 }

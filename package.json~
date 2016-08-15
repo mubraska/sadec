@@ -1,7 +1,0 @@
-{
-    "name": "Restful_Example_Server",
-    "version": "1.0.0",
-    "dependencies": {
-        "restify" : "latest"
-    }
-}

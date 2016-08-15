@@ -1,6 +1,5 @@
 var Twitter = require('twitter');
 var sadecScripts = require('./sadec_scripts.json');
-var ping = require('ping');
 
 // Load the http module to create an http server.
 var http = require('http');
@@ -43,7 +42,9 @@ function postSadecQuote() {
 	q = sadecScripts[x];
 	console.log(q);
         client.post('statuses/update', {status: q},  function(error, tweet, response){
-            if(error) throw error;
+          console.log(error);
+          console.log(tweet);
+          // if(error) throw error;
         });
     }
     catch(ex) {
@@ -51,3 +52,8 @@ function postSadecQuote() {
     }
 } 
 
+var job = new CronJob('0 */1 * * *', function() {
+    postSadecQuote();
+  }, null,
+    true
+);
